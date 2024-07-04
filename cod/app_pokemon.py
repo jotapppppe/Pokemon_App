@@ -2,7 +2,7 @@
 """
 Created on Sat Jun 22 13:28:31 2024
 
-@author: juanp
+@author: Personal
 """
 
 import tkinter as tk
@@ -24,11 +24,11 @@ pygame.mixer.init()
 
 # Rutas de los archivos de música para cada generación 
 music_paths = {
-    "Primera Generación": r"C:\Users\juanp\OneDrive\Documentos\CA0305\Pokemon_App\docs\music\Palette_Town - FRLG.mp3",
-    "Segunda Generación": r"C:\Users\juanp\OneDrive\Documentos\CA0305\Pokemon_App\docs\music\National_Park - HGSS.mp3",
-    "Tercera Generación": r"C:\Users\juanp\OneDrive\Documentos\CA0305\Pokemon_App\docs\music\Route_120 - RSE.mp3",
-    "Cuarta Generación": r"C:\Users\juanp\OneDrive\Documentos\CA0305\Pokemon_App\docs\music\Route_209 - DPP.mp3",
-    "Quinta Generación": r"C:\Users\juanp\OneDrive\Documentos\CA0305\Pokemon_App\docs\music\N-s Farewell - BW.mp3"
+    "Primera Generación": r"C:\Users\Personal\OneDrive\Documentos\CA0305\Pokemon_App\docs\music\Palette_Town - FRLG.mp3",
+    "Segunda Generación": r"C:\Users\Personal\OneDrive\Documentos\CA0305\Pokemon_App\docs\music\National_Park - HGSS.mp3",
+    "Tercera Generación": r"C:\Users\Personal\OneDrive\Documentos\CA0305\Pokemon_App\docs\music\Route_120 - RSE.mp3",
+    "Cuarta Generación": r"C:\Users\Personal\OneDrive\Documentos\CA0305\Pokemon_App\docs\music\Route_209 - DPP.mp3",
+    "Quinta Generación": r"C:\Users\Personal\OneDrive\Documentos\CA0305\Pokemon_App\docs\music\N-s Farewell - BW.mp3"
 }
 def reproducir_musica(generacion):
     # Detener la música actual si se está reproduciendo
@@ -53,7 +53,7 @@ root.geometry("800x566")
 main_frame = tk.Frame(root)
 main_frame.pack(expand=1, fill="both")
 
-icono = tk.PhotoImage(file=r"C:\Users\juanp\OneDrive\Documentos\CA0305\Pokemon_App\docs\imag\pokeicon.png")
+icono = tk.PhotoImage(file=r"C:\Users\Personal\OneDrive\Documentos\CA0305\Pokemon_App\docs\imag\pokeicon.png")
 root.iconphoto(True, icono)
 
 
@@ -124,12 +124,12 @@ def handle_radio_selection(value):
         print("Ninguna opción seleccionada")
 
 # Cargar las imágenes de fondo
-background_image1 = tk.PhotoImage(file=r"C:\Users\juanp\OneDrive\Documentos\CA0305\Pokemon_App\docs\mapas_pkmn\kanto_map.png")
-background_image2 = tk.PhotoImage(file=r"C:\Users\juanp\OneDrive\Documentos\CA0305\Pokemon_App\docs\mapas_pkmn\johto_map.png")
-background_image3 = tk.PhotoImage(file=r"C:\Users\juanp\OneDrive\Documentos\CA0305\Pokemon_App\docs\mapas_pkmn\hoenn_map.png")
-background_image4 = tk.PhotoImage(file=r"C:\Users\juanp\OneDrive\Documentos\CA0305\Pokemon_App\docs\mapas_pkmn\sinnoh_map.png")
-background_image5_1 = tk.PhotoImage(file=r"C:\Users\juanp\OneDrive\Documentos\CA0305\Pokemon_App\docs\mapas_pkmn\unova_map.png")
-background_image5_2 = tk.PhotoImage(file=r"C:\Users\juanp\OneDrive\Documentos\CA0305\Pokemon_App\docs\mapas_pkmn\unova_map_2.png")
+background_image1 = tk.PhotoImage(file=r"C:\Users\Personal\OneDrive\Documentos\CA0305\Pokemon_App\docs\mapas_pkmn\kanto_map.png")
+background_image2 = tk.PhotoImage(file=r"C:\Users\Personal\OneDrive\Documentos\CA0305\Pokemon_App\docs\mapas_pkmn\johto_map.png")
+background_image3 = tk.PhotoImage(file=r"C:\Users\Personal\OneDrive\Documentos\CA0305\Pokemon_App\docs\mapas_pkmn\hoenn_map.png")
+background_image4 = tk.PhotoImage(file=r"C:\Users\Personal\OneDrive\Documentos\CA0305\Pokemon_App\docs\mapas_pkmn\sinnoh_map.png")
+background_image5_1 = tk.PhotoImage(file=r"C:\Users\Personal\OneDrive\Documentos\CA0305\Pokemon_App\docs\mapas_pkmn\unova_map.png")
+background_image5_2 = tk.PhotoImage(file=r"C:\Users\Personal\OneDrive\Documentos\CA0305\Pokemon_App\docs\mapas_pkmn\unova_map_2.png")
 
 
 # Crear un label para la imagen de fondo
@@ -294,7 +294,7 @@ def mostrar_mejor_starter():
     mejor_starter_label.pack(pady=10)
 
     
-    gif_path = f"C:\\Users\\juanp\\OneDrive\\Documentos\\CA0305\\Pokemon_App\\docs\\imag\\{mejor_starter.lower()}.gif"
+    gif_path = f"C:\\Users\\Personal\\OneDrive\\Documentos\\CA0305\\Pokemon_App\\docs\\imag\\{mejor_starter.lower()}.gif"
     # Cargar el GIF usando PIL
     img = Image.open(gif_path)
     frames = []
