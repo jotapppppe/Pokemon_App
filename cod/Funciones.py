@@ -107,7 +107,7 @@ def Top_regional (gym, pkdx, pkdx_nacional):
     
     # Construir el DataFrame
     df = pd.DataFrame(resultados, columns=['Número de Pokédex', 'Puntaje', 'Stats', 'Tipo_1', 'Tipo_2'])
-    df = df.loc[df['Stats'] >=500]
+    df = df.loc[df['Stats'] >=480]
     # Ordenar el DataFrame por el puntaje en orden descendente
     df = df.sort_values(by=['Puntaje', 'Stats'], ascending=[False, False])
     
