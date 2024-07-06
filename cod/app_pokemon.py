@@ -11,12 +11,13 @@ from tkinter import ttk
 import tkinter.font as tkf
 from PIL import Image, ImageTk
 import pygame
-from Funciones import *
 from entrenadores import *
+from Funciones import *
 
 # INTERFAZ 
 
-############################################################
+##########################################################
+
 # Sonido de fondo
 
 # Inicializar pygame
@@ -81,8 +82,8 @@ def update_background(event=None):
         
         gym = unova
         region_label.config(text="Unova Region")
-        # Crear radiobuttons adicionales
-        # Crear radiobuttons adicionales
+       
+        
         background_label.config(image=background_image5_1)
         radio_button_var = tk.StringVar(value="1")  # Inicializar con la opción "1"
         
@@ -101,6 +102,7 @@ def update_background(event=None):
     reset_buttons()
 
     reproducir_musica(selection)
+
 # Función para resetear los botones
 def reset_buttons():
     best_starter_button.config(text="Mejor Inicial")
@@ -108,8 +110,6 @@ def reset_buttons():
     best_team_button.config(text="Mejor Equipo")
 
 # Función de quinta generación
-
-
 def handle_radio_selection(value):
     global gym
     if value == "1":
@@ -122,6 +122,9 @@ def handle_radio_selection(value):
         # Aquí puedes agregar más acciones según la opción seleccionada
     else:
         print("Ninguna opción seleccionada")
+
+
+#############################################################################
 
 # Cargar las imágenes de fondo
 background_image1 = tk.PhotoImage(file="docs/mapas_pkmn/kanto_map.png")
@@ -148,7 +151,14 @@ generation_combobox = ttk.Combobox(main_frame, textvariable=generation_var, valu
 generation_combobox.pack(anchor=tk.NW, padx=10, pady=10)
 generation_combobox.bind("<<ComboboxSelected>>", update_background)
 
-def mejor_equipo(generacion):
+
+####################################################################################
+
+# FUNCIONES DE INTERFAZ
+
+def mejor_equipo():
+
+    generacion = generation_var.get()
     global gym
     starters = ''
     # Obtener los diccionarios (starters y gym) según la generación
@@ -215,47 +225,6 @@ def mejor_equipo(generacion):
     
     tabla_equipo.pack(padx=10, pady=10, fill='both', expand=True)
 
-    # Resto de tu código de interfaz...
-
-# Ejemplo de uso en un botón de tkinter
-def on_mejor_equipo_click():
-    generacion_elegida = generation_var.get()  # Obtener la generación seleccionada
-    mejor_equipo(generacion_elegida)
-
-#######################################
-
-# Crear los botones
-# Crear un frame para los botones y colocarlo en el marco principal
-button_frame = tk.Frame(main_frame)
-button_frame.pack(pady=20)
-
-# Crear los botones y empaquetarlos en el frame de botones
-best_starter_button = ttk.Button(button_frame, text="Mejor Inicial")
-best_starter_button.pack(side=tk.LEFT, padx=10)
-
-top_10_button = ttk.Button(button_frame, text="Top 15")
-top_10_button.pack(side=tk.LEFT, padx=10)
-
-best_team_button = ttk.Button(button_frame, text="Mejor Equipo", command=on_mejor_equipo_click)
-best_team_button.pack(side=tk.LEFT, padx=10)
-
-# Lista para almacenar widgets adicionales
-additional_widgets = []
-
-# Inicializar con la opción A seleccionada
-radio_button_var1 = tk.IntVar(value=1)  # Inicializar con el valor 1 (Opción A)
-radio_button1 = ttk.Radiobutton(main_frame, text="Opción A", variable=radio_button_var1, value=1)
-radio_button1.pack(anchor=tk.NW, padx=10, pady=10)
-additional_widgets.append(radio_button1)
-
-radio_button_var2 = tk.IntVar()
-radio_button2 = ttk.Radiobutton(main_frame, text="Opción B", variable=radio_button_var2, value=2)
-radio_button2.pack(anchor=tk.NW, padx=10, pady=10)
-additional_widgets.append(radio_button2)
-
-# Configurar función para manejar la selección de los radiobuttons
-radio_button1.config(command=lambda: handle_radio_selection(radio_button_var1.get()))
-radio_button2.config(command=lambda: handle_radio_selection(radio_button_var2.get()))
 
 def mostrar_mejor_starter():
     global gym
@@ -277,8 +246,7 @@ def mostrar_mejor_starter():
         gym = sinnoh
     elif generacion == "Quinta Generación":
         starters = starter_unova
-
-    
+  
     # Calcular el resultado utilizando la función starter
     resultado = starter(starters, gym, pokedex_completa)
 
@@ -292,7 +260,6 @@ def mostrar_mejor_starter():
     mejor_starter_label = tk.Label(resultado_window, text=f"El mejor inicial es: {mejor_starter}")
     mejor_starter_label.pack(pady=10)
 
-    
     gif_path = f"docs/imag/{mejor_starter.lower()}.gif"
     # Cargar el GIF usando PIL
     img = Image.open(gif_path)
@@ -332,7 +299,6 @@ def mostrar_mejor_starter():
     # Iniciar la animación del GIF
     animate(0)
 
-
     # Crear un Treeview (tabla) para mostrar los resultados
     tabla_resultado = ttk.Treeview(resultado_window, columns=('Tipo', 'Puntaje'), show='headings')
     tabla_resultado.heading('Tipo', text='Tipo')
@@ -353,7 +319,6 @@ def mostrar_mejor_starter():
 
     resultado_window.update_idletasks()  # Asegura que todas las tareas pendientes se completen
     resultado_window.geometry("420x350")
-
 
 
 # Función para mostrar la tabla con el Top 10 según la generación seleccionada
@@ -406,17 +371,46 @@ def mostrar_top10():
 
     tabla_resultado.pack(padx=10, pady=10, fill='both', expand=True)
 
+####################################################################################
 
+# Creación de los botones
 
+# Crear un frame para los botones y colocarlo en el marco principal
+button_frame = tk.Frame(main_frame)
+button_frame.pack(pady=20)
 
-# Configurar el botón Mejor Starter
+# Crear los botones, empaquetarlos en el frame de botones y darles su comando.
+
+best_starter_button = ttk.Button(button_frame, text="Mejor Inicial")
+best_starter_button.pack(side=tk.LEFT, padx=10)
 best_starter_button.config(command=mostrar_mejor_starter)
 
-# Configurar el botón Top 10
+top_10_button = ttk.Button(button_frame, text="Top 15")
+top_10_button.pack(side=tk.LEFT, padx=10)
 top_10_button.config(command=mostrar_top10)
 
+best_team_button = ttk.Button(button_frame, text="Mejor Equipo")
+best_team_button.pack(side=tk.LEFT, padx=10)
+best_team_button.config(command=mejor_equipo)
 
-# Ejecutar la función para establecer la imagen inicial
+# Lista para almacenar widgets adicionales
+additional_widgets = []
+
+# Inicializar con la opción A seleccionada
+radio_button_var1 = tk.IntVar(value=1)  # Inicializar con el valor 1 (Opción A)
+radio_button1 = ttk.Radiobutton(main_frame, text="Opción A", variable=radio_button_var1, value=1)
+radio_button1.pack(anchor=tk.NW, padx=10, pady=10)
+additional_widgets.append(radio_button1)
+
+radio_button_var2 = tk.IntVar()
+radio_button2 = ttk.Radiobutton(main_frame, text="Opción B", variable=radio_button_var2, value=2)
+radio_button2.pack(anchor=tk.NW, padx=10, pady=10)
+additional_widgets.append(radio_button2)
+
+# Configurar función para manejar la selección de los radiobuttons
+radio_button1.config(command=lambda: handle_radio_selection(radio_button_var1.get()))
+radio_button2.config(command=lambda: handle_radio_selection(radio_button_var2.get()))
+
 update_background()
 
 # Ejecutar el bucle principal de la aplicación
