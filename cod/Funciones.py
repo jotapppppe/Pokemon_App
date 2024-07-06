@@ -2,8 +2,8 @@
 import pandas as pd
 
 # DATOS
-pokedex_completa = pd.read_csv(r"C:\Users\Personal\OneDrive\Documentos\CA0305\App\App\App_Pokemon\data\Pokemon.csv")
-tabla_de_tipos = pd.read_csv(r"C:\Users\Personal\OneDrive\Documentos\CA0305\App\App\App_Pokemon\data\tabla_tipos.csv")
+pokedex_completa = pd.read_csv("data\Pokemon.csv")
+tabla_de_tipos = pd.read_csv("data/tabla_tipos.csv")
 
 tipo = pd.DataFrame({
     'Numero': range(18),

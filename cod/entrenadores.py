@@ -8,7 +8,7 @@ Created on Sat Jun 22 15:17:50 2024
 # Diccionarios con líderes, starters y ligas.
 import pandas as pd
 
-pokedex_completa = pd.read_csv(r"C:\Users\Personal\OneDrive\Documentos\CA0305\App\App\App_Pokemon\data\Pokemon.csv")
+pokedex_completa = pd.read_csv("data\Pokemon.csv")
 
 #Función
 
