@@ -13,46 +13,55 @@ pokedex_completa = pd.read_csv("data\Pokemon.csv")
 #Función
 
 def index_pokemon(ID, forma = 0):
+    '''
+    Esta función devuelve el índice de un pokémon específico en el DataFrame.
+
+    Parameters:
+    ID (int): El número de la Pokédex Nacional del pokémon.
+    forma (int, optional): La forma del Pokémon. El valor predeterminado es 0.
+
+    Returns:
+    int: El índice del pokémon en el DataFrame.
+    '''
     numero = [pokedex_completa.loc[pokedex_completa['ID'] == ID].index[forma]]
     return int(numero[0])
 
 
 ## Kanto
 
-starter_kanto = [0, 3, 6]
+starter_kanto = [index_pokemon(1), index_pokemon(4), index_pokemon(7)]
 
 kanto = {
-    'Brock': [73, 94],
-    'Misty': [119, 120],
-    'Lt. Surge': [99, 24, 25],
-    'Erika': [70, 113, 44],
-    'Koga': [108, 108, 88, 109],
-    'Sabrina': [63, 48, 121, 64],
-    'Blaine': [57, 76, 77, 58],
-    'Giovanni': [110, 50, 33, 30, 110],
-    'Lorelei': [86, 90, 79, 123, 130],
-    'Bruno': [94, 94, 105, 106, 67],
-    'Agatha': [93, 41, 92, 23, 93],
-    'Lance': [129, 147, 147, 141, 148]
+    'Brock': [index_pokemon(74), index_pokemon(95)],
+    'Misty': [index_pokemon(120), index_pokemon(121)],
+    'Lt. Surge': [index_pokemon(100), index_pokemon(25), index_pokemon(26)],
+    'Erika': [index_pokemon(71), index_pokemon(114), index_pokemon(45)],
+    'Koga': [index_pokemon(109), index_pokemon(109), index_pokemon(89), index_pokemon(110)],
+    'Sabrina': [index_pokemon(64), index_pokemon(49), index_pokemon(122), index_pokemon(65)],
+    'Blaine': [index_pokemon(58), index_pokemon(77), index_pokemon(78), index_pokemon(59)],
+    'Giovanni': [index_pokemon(111), index_pokemon(51), index_pokemon(34), index_pokemon(31), index_pokemon(111)],
+    'Lorelei': [index_pokemon(87), index_pokemon(91), index_pokemon(80), index_pokemon(124), index_pokemon(131)],
+    'Bruno': [index_pokemon(95), index_pokemon(95), index_pokemon(106), index_pokemon(107), index_pokemon(68)],
+    'Agatha': [index_pokemon(94), index_pokemon(42), index_pokemon(93), index_pokemon(24), index_pokemon(94)],
+    'Lance': [index_pokemon(130), index_pokemon(148), index_pokemon(148), index_pokemon(142), index_pokemon(149)]
 }
 
-## Johto   
-starter_johto = [151, 154, 158]
+starter_johto = [index_pokemon(152), index_pokemon(155), index_pokemon(159)]
 
 johto = {
-    'Falkner': [15, 16],
-    'Bugsy': [10, 13, 122],
-    'Whitney': [34, 240],
-    'Morty': [93, 91, 92, 92],
-    'Chuck': [61, 58],
-    'Jasmine': [207, 80, 80],
-    'Pryce': [86, 85, 220],
-    'Clair': [129, 147, 147, 229],
-    'Will': [177, 123, 80, 102, 177],
-    'Koga': [168, 204, 88, 48, 168],
-    'Bruno': [236, 94, 105, 106, 67],
-    'Karen': [196, 44, 197, 93, 228],
-    'Lance': [129, 5, 148, 141, 148, 148]
+    'Falkner': [index_pokemon(16), index_pokemon(17)],
+    'Bugsy': [index_pokemon(11), index_pokemon(14), index_pokemon(123)],
+    'Whitney': [index_pokemon(35), index_pokemon(241)],
+    'Morty': [index_pokemon(94), index_pokemon(92), index_pokemon(93), index_pokemon(93)],
+    'Chuck': [index_pokemon(62), index_pokemon(59)],
+    'Jasmine': [index_pokemon(208), index_pokemon(81), index_pokemon(81)],
+    'Pryce': [index_pokemon(87), index_pokemon(86), index_pokemon(221)],
+    'Clair': [index_pokemon(130), index_pokemon(148), index_pokemon(148), index_pokemon(230)],
+    'Will': [index_pokemon(178), index_pokemon(124), index_pokemon(81), index_pokemon(103), index_pokemon(178)],
+    'Koga': [index_pokemon(169), index_pokemon(205), index_pokemon(89), index_pokemon(49), index_pokemon(169)],
+    'Bruno': [index_pokemon(237), index_pokemon(95), index_pokemon(106), index_pokemon(107), index_pokemon(68)],
+    'Karen': [index_pokemon(197), index_pokemon(45), index_pokemon(198), index_pokemon(94), index_pokemon(229)],
+    'Lance': [index_pokemon(130), index_pokemon(6), index_pokemon(149), index_pokemon(142), index_pokemon(149), index_pokemon(149)]
 }
 
 johto_kanto = {
@@ -72,17 +81,17 @@ johto_kanto = {
 }
 
 ## Hoenn
-starter_hoenn = [251, 254, 257]
+starter_hoenn = [index_pokemon(252), index_pokemon(255), index_pokemon(258)]
 hoenn = {
-    'Roxanne': [73, 73, 298],
-    'Brawly': [65, 306, 295],
-    'Wattson': [81, 99, 308, 309],
-    'Flannery': [321, 217, 322, 323],
-    'Norman': [328, 263, 287, 288],
-    'Winona': [332, 356, 278, 226, 333],
-    'Tate & Liza': [343, 177, 336, 337],
-    'Wallace': [320, 72, 339, 271, 129, 349],  # Campeón de la Liga Pokémon
-    'Sidney': [261, 331, 274, 318, index_pokemon(259)],
+    'Roxanne': [index_pokemon(74), index_pokemon(74), index_pokemon(299)],
+    'Brawly': [index_pokemon(66), index_pokemon(307), index_pokemon(296)],
+    'Wattson': [index_pokemon(82), index_pokemon(100), index_pokemon(309), index_pokemon(310)],
+    'Flannery': [index_pokemon(322), index_pokemon(218), index_pokemon(323), index_pokemon(324)],
+    'Norman': [index_pokemon(329), index_pokemon(264), index_pokemon(288), index_pokemon(289)],
+    'Winona': [index_pokemon(333), index_pokemon(357), index_pokemon(279), index_pokemon(227), index_pokemon(334)],
+    'Tate & Liza': [index_pokemon(344), index_pokemon(178), index_pokemon(337), index_pokemon(338)],
+    'Wallace': [index_pokemon(321), index_pokemon(73), index_pokemon(340), index_pokemon(272), index_pokemon(130), index_pokemon(350)],
+    'Sidney': [index_pokemon(262), index_pokemon(332), index_pokemon(275), index_pokemon(319), index_pokemon(259)],
     'Phoebe': [index_pokemon(356), index_pokemon(354), index_pokemon(354), index_pokemon(302), index_pokemon(356)],
     'Glacia': [index_pokemon(362), index_pokemon(364), index_pokemon(362), index_pokemon(364), index_pokemon(365)],
     'Drake': [index_pokemon(372), index_pokemon(334), index_pokemon(330), index_pokemon(230), index_pokemon(373)],
