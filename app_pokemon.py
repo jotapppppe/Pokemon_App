@@ -32,6 +32,15 @@ music_paths = {
     "Quinta Generación": "docs/music/N-s Farewell - BW.mp3"
 }
 def reproducir_musica(generacion):
+    '''
+    Reproduce la música de fondo según la generación seleccionada.
+
+    Parameters:
+    generacion (str): La generación seleccionada para la que se debe reproducir la música.
+
+    Returns:
+    None
+    '''
     # Detener la música actual si se está reproduciendo
     pygame.mixer.music.stop()
     
@@ -58,8 +67,16 @@ icono = tk.PhotoImage(file="docs/imag/pokeicon.png")
 root.iconphoto(True, icono)
 
 
-# Función para cambiar la imagen de fondo según la selección de la generación
 def update_background(event=None):
+    '''
+    Actualizar la imagen de fondo y la etiqueta de región basándose en la generación seleccionada.
+
+    Parameters:
+    event (tkinter.Event, opcional): El evento que activó esta función. Por defecto es None.
+
+    Returns:
+    None
+    '''    
     global gym
     selection = generation_var.get()
     for widget in additional_widgets:
@@ -103,23 +120,39 @@ def update_background(event=None):
 
     reproducir_musica(selection)
 
-# Función para resetear los botones
 def reset_buttons():
+    '''
+    Esta función restablece el texto de los botones a su estado original.
+
+    Parameters:
+    None
+
+    Returns:
+    None
+    '''
     best_starter_button.config(text="Mejor Inicial")
     top_10_button.config(text="Top 20")
     best_team_button.config(text="Mejor Equipo")
 
-# Función de quinta generación
 def handle_radio_selection(value):
+    '''
+    Esta función maneja la selección de botones de opción y actualiza la variable del gimnasio en consecuencia.
+
+    Parameters:
+    value (str): el valor del botón de opción seleccionado. Puede ser "1" o "2".
+
+    Returns:
+    None
+    '''
     global gym
     if value == "1":
         background_label.config(image=background_image5_1)
         gym = unova
-        # Aquí puedes agregar más acciones según la opción seleccionada
+       
     elif value == "2":
         background_label.config(image=background_image5_2)
         gym = unova_bw2
-        # Aquí puedes agregar más acciones según la opción seleccionada
+        
     else:
         print("Ninguna opción seleccionada")
 
@@ -157,11 +190,20 @@ generation_combobox.bind("<<ComboboxSelected>>", update_background)
 # FUNCIONES DE INTERFAZ
 
 def mejor_equipo():
+    '''
+    Esta función calcula y muestra el mejor equipo de 6 Pokémon para una generación determinada.
+    El equipo se basa en los 5 mejores Pokémon de la Pokédex regional, además del Pokémon inicial,
+    y garantiza que no haya dos Pokémon que posean el mismo tipo primario.
 
+    Parameters:
+    None
+
+    Returns:
+    None
+    '''
     generacion = generation_var.get()
     global gym
-    starters = ''
-    # Obtener los diccionarios (starters y gym) según la generación
+   
     if generacion == "Primera Generación":
         mejor_starter = {'Número de Pokédex': 'Venusaur', 'Puntaje': 16.25, 'Stats': 525, 'Tipo_1': 'Grass', 'Tipo_2': 'Poison'}
         gym = kanto
@@ -227,22 +269,31 @@ def mejor_equipo():
 
 
 def mostrar_mejor_starter():
+    '''
+    Muestra el mejor pokémon inicial para la generación seleccionada.
+
+    Parameters:
+    None
+
+    Returns:
+    None
+    '''
     global gym
     # Definir los starters y gym según la generación seleccionada
     generacion = generation_var.get()
     
     if generacion == "Primera Generación":
-        starters = starter_kanto  # Ejemplo de lista de starters para la Primera Generación
+        starters = starter_kanto  
         gym = kanto
     elif generacion == "Segunda Generación":
-        starters = starter_johto  # Ejemplo de lista de starters para la Segunda Generación
-        gym = johto # Ejemplo de diccionario de gimnasios para la Segunda Generación
+        starters = starter_johto  
+        gym = johto 
     
     elif generacion == "Tercera Generación":
-        starters = starter_hoenn  # Ejemplo de lista de starters para la Tercera Generación
-        gym = hoenn # Ejemplo de diccionario de gimnasios para la Tercera Generación
+        starters = starter_hoenn  
+        gym = hoenn 
     elif generacion == "Cuarta Generación":
-        starters = starter_sinnoh  # Ejemplo de lista de starters para la Cuarta Generación
+        starters = starter_sinnoh  
         gym = sinnoh
     elif generacion == "Quinta Generación":
         starters = starter_unova
@@ -252,6 +303,7 @@ def mostrar_mejor_starter():
 
     # Obtener el nombre del mejor starter
     mejor_starter = pokedex_completa.iloc[starters[resultado[resultado['Puntaje'] == resultado['Puntaje'].max()].index[0]]]['Name']
+
     # Crear una nueva ventana para mostrar la tabla
     resultado_window = tk.Toplevel(root)
     resultado_window.title("Mejor Starter")
@@ -261,6 +313,7 @@ def mostrar_mejor_starter():
     mejor_starter_label.pack(pady=10)
 
     gif_path = f"docs/imag/{mejor_starter.lower()}.gif"
+
     # Cargar el GIF usando PIL
     img = Image.open(gif_path)
     frames = []
@@ -320,27 +373,35 @@ def mostrar_mejor_starter():
     resultado_window.update_idletasks()  # Asegura que todas las tareas pendientes se completen
     resultado_window.geometry("420x350")
 
-
-# Función para mostrar la tabla con el Top 10 según la generación seleccionada
 def mostrar_top10():
+    '''
+    Muestra el top 20 de los mejores pokémon según la generación seleccionada.
+
+    Parameters:
+    None
+
+    Returns:
+    None
+    '''
     # Definir gym según la generación seleccionada
     global gym
     generacion = generation_var.get()
     
     if generacion == "Primera Generación":
-        gym = kanto # Ejemplo de diccionario de gimnasios para la Primera Generación
+        gym = kanto 
         pkdx = pokedex_completa.loc[pokedex_completa['Generation'] == 1]
     elif generacion == "Segunda Generación":
-        gym = johto  # Ejemplo de diccionario de gimnasios para la Segunda Generación
+        gym = johto  
         pkdx = pokedex_completa.loc[pokedex_completa['Generation'] == 2]
     elif generacion == "Tercera Generación":
-        gym = hoenn  # Ejemplo de diccionario de gimnasios para la Tercera Generación
+        gym = hoenn  
         pkdx = pokedex_completa.loc[pokedex_completa['Generation'] == 3]
     elif generacion == "Cuarta Generación":
         gym = sinnoh
         pkdx = pokedex_completa.loc[pokedex_completa['Generation'] == 4]
     elif generacion == "Quinta Generación":
         pkdx = pokedex_completa.loc[pokedex_completa['Generation'] == 5]
+
     # Calcular el resultado utilizando la función Top_regional
     resultado = Top_regional(gym, pkdx, pokedex_completa)
 
